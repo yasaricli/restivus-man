@@ -1,3 +1,6 @@
+import request from 'request';
+import Future from 'fibers/future';
+
 export class RestivusManServer {
   constructor(api, options) {
     this._api = api;
@@ -27,16 +30,35 @@ export class RestivusManServer {
 
         return {
           options: route.options,
-          endpoints: _.keys(route.endpoints)
+          endpoints: _.map(_.keys(route.endpoints), (key) => {
+            return {
+              method: key
+            }
+          })
         }
       },
 
-      'restivus-man.get'() {
+      'restivus-man.get'(url, data) {
+        const future = new Future();
 
+        request.get(url, (error, response, body) => {
+
+          return future.return(JSON.parse(body));
+        });
+
+        return future.wait();
       },
 
-      'restivus-man.post'() {
+      'restivus-man.post'(url, data) {
+        return url
+      },
 
+      'restivus-man.put'(url, data) {
+        return url
+      },
+
+      'restivus-man.options'(url, data) {
+        return url
       }
     })
   }

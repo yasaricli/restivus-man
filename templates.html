@@ -11,11 +11,35 @@
 </template>
 
 <template name='restivus-man-request'>
-  <div class='restivus-man-request'>
-    {{# if route }}
-      {{ route.endpoints }}
-    {{ else }}
-      loading..
-    {{/if}}
-  </div>
+ <div class="restivus-man-modal opened">
+   <div class="modal-dialog">
+     <div class="modal-header">
+       <h2>{{ url }}</h2>
+       <a href="#" class="btn-close" aria-hidden="true">×</a>
+     </div>
+     <div class="modal-body">
+       {{# if route }}
+         <ul class='restivus-man__paths'>
+           {{# each route.endpoints }}
+             <li>
+               {{ method }}
+             </li>
+           {{/each}}
+         </ul>
+       {{ else }}
+         loading..
+       {{/if}}
+     </div>
+
+     {{# if loading }}
+       loading...
+     {{/if}}
+
+     {{# if result }}
+       <div class="modal-header">
+         <pre>{{ stringify result }}</pre>
+       </div>
+     {{/if}}
+   </div>
+ </div>
 </template>

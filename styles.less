@@ -19,6 +19,7 @@
     color: white;
     padding: 0px!important;
     margin: 0px!important;
+    overflow: hidden;
 
     li {
       cursor: pointer;
@@ -26,7 +27,6 @@
       list-style: none;
       background-color: #cccccc;
       float: left;
-      overflow: hidden;
       border-radius: 3px;
       margin-right: 5px;
 
@@ -34,5 +34,109 @@
         background-color: #c3bfbf;
       }
     }
+  }
+}
+
+//
+// Variables
+// ----------------------
+
+@gray: #333;
+@gray-light: #aaa;
+@gray-lighter: #eee;
+@space: 40px;
+@blue: #428bca;
+@blue-dark: darken(@blue, 5%);
+
+// Mixin for transition/transform
+.translate(@x; @y) {
+  -webkit-transform: translate(@x, @y);
+      -ms-transform: translate(@x, @y); // IE9+
+          transform: translate(@x, @y);
+}
+.transition(@transition) {
+  -webkit-transition: @transition;
+          transition: @transition;
+}
+.transition-transform(@transition) {
+  -webkit-transition: -webkit-transform @transition;
+     -moz-transition: -moz-transform @transition;
+       -o-transition: -o-transform @transition;
+          transition: transform @transition;
+}
+
+
+.btn-close{
+  color: @gray-light;
+  font-size: 30px;
+  text-decoration: none;
+  position: absolute; right: 5px; top: 0;
+
+  &:hover{
+     color: darken(@gray-light, 10%);
+  }
+
+}
+
+.restivus-man-modal {
+
+  // This is modal bg
+  &:before {
+    content: "";
+    display: none;
+    background: rgba(0,0,0,.6);
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 10;
+  }
+
+  &.opened {
+
+    // Active animate in modal
+    &:before {
+      display: block;
+    }
+    .modal-dialog{
+      .translate(0, 0);
+      top: 20%;
+    }
+
+  }
+
+  .modal-dialog {
+    background: #fefefe;
+    border: @gray solid 1px;
+    border-radius: 5px;
+    margin-left: -200px;
+    position: fixed;
+    left: 42%;
+    top: -100%;
+    z-index: 11;
+    width: 600px;
+    .translate(0, -500%);
+    .transition-transform(~"0.3s ease-out");
+  }
+
+  .modal-body{
+    padding: @space/2;
+  }
+
+  .modal-header,
+  .modal-footer{
+    padding: @space/4 @space/2;
+  }
+
+  .modal-header{
+    border-bottom: @gray-lighter solid 1px;
+
+    h2{
+      font-size: 20px;
+    }
+
+  }
+
+  .modal-footer{
+    border-top: @gray-lighter solid 1px;
+    text-align: right;
   }
 }

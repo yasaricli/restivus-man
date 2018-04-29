@@ -6,6 +6,11 @@ Package.describe({
   documentation: 'README.md'
 });
 
+Npm.depends({
+  "request": "2.85.0",
+  'fibers': '2.0.2'
+})
+
 Package.onUse(function(api) {
   api.versionsFrom('1.6.1.1');
 
@@ -15,6 +20,7 @@ Package.onUse(function(api) {
     'templating',
     'tracker',
     'less',
+    'reactive-var',
 
     'simple:reactive-method@1.0.2'
   ]);
