@@ -17,7 +17,7 @@ Package.onUse(function(api) {
   api.use([
     'ecmascript',
     'underscore',
-    'templating',
+    'templating@1.3.2',
     'tracker',
     'less',
     'reactive-var',
