@@ -1,5 +1,7 @@
 ### Restivus Man
 
+![Screenshot of Restivus Man](http://g.recordit.co/zxTS0PDQzQ.gif)
+
 ## Install
     meteor install yasaricli:restivus-man
 
