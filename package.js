@@ -1,8 +1,8 @@
 Package.describe({
   name: 'yasaricli:restivus-man',
   version: '0.0.1',
-  summary: '',
-  git: '',
+  summary: 'Restivus UI',
+  git: 'https://github.com/yasaricli/restivus-man',
   documentation: 'README.md'
 });
 
