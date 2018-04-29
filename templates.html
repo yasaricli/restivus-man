@@ -1,0 +1,21 @@
+<template name='restivus-man'>
+  <div class='restivus-man'>
+    <ul class='restivus-man__paths'>
+      {{# each paths }}
+        <li>
+          {{ path }}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name='restivus-man-request'>
+  <div class='restivus-man-request'>
+    {{# if route }}
+      {{ route.endpoints }}
+    {{ else }}
+      loading..
+    {{/if}}
+  </div>
+</template>
