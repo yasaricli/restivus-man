@@ -31,11 +31,28 @@
        {{/if}}
      </div>
 
+     <b>* Post Data <a href='#' class='clear'>Clear</a></b>
+ <pre>
+   {
+     {{# each postData }}
+       "{{ key }}": "{{ value }}",
+     {{/each}}
+   }
+ </pre>
+
+     <form id='DataForm'>
+       <input type='text' id='restivus-man-key' placeholder='Key' />
+       <input type='text' id='restivus-man-value' placeholder='Value' />
+       <button type='submit'>Add</button>
+     </form>
+
      {{# if loading }}
        loading...
      {{/if}}
 
      {{# if result }}
+     <hr />
+     <b>* Result</b>
        <div class="modal-header">
          <pre>{{ stringify result }}</pre>
        </div>

@@ -14,6 +14,9 @@ export class RestivusManClient {
     this.requestTemplate.onCreated(function() {
       this.loading = new ReactiveVar(false);
       this.result = new ReactiveVar(null);
+
+      // post data.
+      this.postData = new ReactiveArray([]);
     });
 
     // events
@@ -32,14 +35,33 @@ export class RestivusManClient {
         return self.closeRequestModal();
       },
 
-      'click li'(event, instance) {
+      'click .restivus-man__paths li'(event, instance) {
         const { url } = instance.data;
+        const data = self.parseData(instance.postData.array());
         instance.loading.set(true);
 
-        return Meteor.call(`restivus-man.${this.method}`, url, {}, (err, result) => {
+        return Meteor.call(`restivus-man.${this.method}`, url, data, (err, result) => {
           instance.loading.set(false);
           return instance.result.set(result);
         });
+      },
+
+      'submit #DataForm'(event, instance) {
+        event.preventDefault();
+        const key = instance.find('#restivus-man-key').value;
+        const value = instance.find('#restivus-man-value').value;
+
+        if (key && value) {
+          instance.postData.push({ key, value });
+
+          // reset form
+          return event.currentTarget.reset();
+        }
+      },
+
+      'click .clear'(event, instance) {
+        event.preventDefault();
+        instance.postData.clear();
       }
     });
 
@@ -67,11 +89,25 @@ export class RestivusManClient {
 
       stringify(data) {
         return JSON.stringify(data, undefined, 2);
+      },
+
+      postData() {
+        const instance = Template.instance();
+        return instance.postData.list();
       }
     });
 
     // render.
     this.render();
+  }
+
+  parseData(array) {
+    let out = {};
+    _.forEach(array, (doc) => {
+      out[doc.key] = doc.value;
+    });
+
+    return out;
   }
 
   closeRequestModal() {

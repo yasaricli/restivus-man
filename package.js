@@ -22,6 +22,7 @@ Package.onUse(function(api) {
     'less',
     'reactive-var',
 
+    'manuel:reactivearray@1.0.6',
     'simple:reactive-method@1.0.2'
   ]);
 

@@ -42,7 +42,6 @@ export class RestivusManServer {
         const future = new Future();
 
         request.get(url, (error, response, body) => {
-
           return future.return(JSON.parse(body));
         });
 
@@ -50,7 +49,23 @@ export class RestivusManServer {
       },
 
       'restivus-man.post'(url, data) {
-        return url
+        const future = new Future();
+
+        request.post({
+          url: url,
+          form: data
+        }, (error, response, body) => {
+          try {
+            future.return(JSON.parse(body));
+          } catch(e) {
+            future.return({
+              status: 'error',
+              data: `${body}`
+            });
+          }
+        });
+
+        return future.wait();
       },
 
       'restivus-man.put'(url, data) {
