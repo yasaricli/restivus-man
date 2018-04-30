@@ -1,5 +1,5 @@
 ### Restivus Man
-Restivus Man Streamlines the Development Process and Simplifies APIs.
+restivus-man streamlines the Development Process and Simplifies APIs.
 
 ![Screenshot of Restivus Man](http://g.recordit.co/zxTS0PDQzQ.gif)
 
