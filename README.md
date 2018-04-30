@@ -1,4 +1,5 @@
 ### Restivus Man
+Postman Streamlines the Development Process and Simplifies APIs.
 
 ![Screenshot of Restivus Man](http://g.recordit.co/zxTS0PDQzQ.gif)
 
